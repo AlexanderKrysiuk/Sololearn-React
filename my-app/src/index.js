@@ -1,27 +1,17 @@
 import React, { useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 
-function AddForm() {
-  const [sum, setSum] = useState(0);
-  const [num, setNum] = useState(0);
-
-  function handleChange(e) {
-    setNum(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    setSum(sum + Number(num));
-    e.preventDefault();
-  }
-
-  return <form onSubmit={handleSubmit}>
-    <input type="number" value={num} onChange={handleChange} />
-    <input type="submit" value="Add" />
-    <p>Sum is {sum}</p>
-  </form>;
+function MyList(props) {
+  const arr = props.data;
+  const listItems = arr.map((val, index) =>
+  <li key={index}>{val}</li>
+  );
+  return <ul>{listItems}</ul>
 }
 
-const el = <AddForm />;
+const arr = ["A","B","C"];
+const el = <MyList data={arr} />;
+
 ReactDOM.render(
   el,
   document.getElementById('root')
